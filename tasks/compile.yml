@@ -3,10 +3,10 @@
   command: make dependencies
   sudo_user: "{{ rtbkit_user }}"
   args:
-      chdir: "{{ rtbkit_user_home}}"
+      chdir: "{{ rtbkit_framework }}"
 
 - name: compile RTBkit
   shell: make compile
   sudo_user: "{{ rtbkit_user }}"
   args:
-    chdir: "{{ rtbkit_user_home }}"
+    chdir: "{{ rtbkit_framework }}"

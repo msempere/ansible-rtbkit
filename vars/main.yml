@@ -3,22 +3,22 @@
 rtbkit_user:    rtbkit
 rtbkit_group:   rtbkit
 
-rtbkit_user_home:   /home/{{ rtbkit_user }}/test
+rtbkit_user_home:   /home/{{ rtbkit_user }}
+rtbkit_framework:   "{{ rtbkit_user_home }}/test"
 
 # test stack?
 test: no
 
+# pycairo
+pycairo_download_url: http://cairographics.org/releases
+pycairo_version: 1.10.0
+
 # PIP
-pip_extra_args: --allow-all-external --allow-unverified
 pip_pkgs:
-    - pycairo
-    - mod_python
     - django
     - python-ldap
     - python-memcached
-    - python-sqlite2
     - bitmap
-    - bitmap-fonts
     - carbon
     - whisper
     - graphite-web
@@ -79,5 +79,7 @@ apt_pkgs:
     - libcairo2-dev
     - libcairomm-1.0-dev
     - protobuf-compiler
-    - redis-server
-
+    - libapache2-mod-python
+    - libldap2-dev
+    - libsasl2-dev
+    - python-sqlite

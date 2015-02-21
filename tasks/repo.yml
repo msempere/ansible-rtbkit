@@ -2,7 +2,7 @@
  - name: clone RTBkit repo
    git: >
     repo=git@github.com:rtbkit/rtbkit.git
-    dest={{ rtbkit_user_home }}
+    dest={{ rtbkit_framework }}
     recursive=no
     update=yes
     accept_hostkey=yes
@@ -10,16 +10,16 @@
  - name: copy sample.mk as local.mk config file
    command: cp jml-build/sample.local.mk local.mk
    args:
-    chdir: "{{ rtbkit_user_home }}"
+    chdir: "{{ rtbkit_framework }}"
 
  - name: create build directory
    file: >
-    path={{ rtbkit_user_home }}/rtbkit/build
+    path={{ rtbkit_framework }}/rtbkit/build
     state=directory
 
  - name: apply correct permissions to RTBkit directory
    file: >
-    path={{ rtbkit_user_home }}
+    path={{ rtbkit_framework }}
     state=directory
     recurse=yes
     owner={{ rtbkit_user }}

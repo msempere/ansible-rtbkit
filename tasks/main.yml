@@ -1,3 +1,5 @@
+- include: pycairo.yml
+  tags: install
 
 - include: install.yml
   tags: install

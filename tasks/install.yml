@@ -11,7 +11,7 @@
        purge=yes
 
  - name: install graphite required components
-   pip: name={{ item }} extra_args='--allow-all-external --allow-unverified'
+   shell: pip install --allow-all-external {{ item }} --allow-unverified {{ item }}
    with_items: pip_pkgs
 
  - name: install specific version for Twisted module

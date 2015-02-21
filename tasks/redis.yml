@@ -1,5 +1,13 @@
 
+ - name: set redis daemonize flag
+   replace: >
+    dest={{ rtbkit_framework }}/rtbkit/sample.redis.conf
+    regexp='^daemonize no$'
+    replace='daemonize yes'
+    owner={{ rtbkit_user }}
+
  - name: run redis server
-   command: redis-server sample.redis.conf
+   command: "{{ rtbkit_user_home }}/local/bin/redis-server sample.redis.conf"
+   sudo_user: "{{ rtbkit_user }}"
    args:
-    chdir: "{{ rtbkit_user_home }}/rtbkit"
+    chdir: "{{ rtbkit_framework }}/rtbkit"
