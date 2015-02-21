@@ -1,0 +1,20 @@
+---
+ - name: install dependencies
+   apt: pkg={{ item }} update_cache=yes state=present
+   with_items: apt_pkgs
+
+ - name: remove system packages that cause problems with platform-deps
+   apt: >
+       pkg=libcurl4-openssl-dev
+       update_cache=yes
+       state=absent
+       purge=yes
+
+ - name: install graphite required components
+   pip: name={{ item }} extra_args='--allow-all-external --allow-unverified'
+   with_items: pip_pkgs
+
+ - name: install specific version for Twisted module
+   pip: name=Twisted
+        version=11.1.0
+

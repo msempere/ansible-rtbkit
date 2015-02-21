@@ -1,0 +1,20 @@
+
+- include: install.yml
+  tags: install
+  when: ansible_distribution in [ 'Debian', 'Ubuntu' ]
+
+- include: repo.yml
+  tags: update
+
+- include: compile.yml
+  tags: compile
+
+- include: zookeeper.yml
+
+- include: redis.yml
+
+- include: graphite.yml
+
+- include: test.yml
+  tags: test
+  when: test is defined and test == 'yes'

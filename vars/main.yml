@@ -1,0 +1,83 @@
+
+# RTBkit
+rtbkit_user:    rtbkit
+rtbkit_group:   rtbkit
+
+rtbkit_user_home:   /home/{{ rtbkit_user }}/test
+
+# test stack?
+test: no
+
+# PIP
+pip_extra_args: --allow-all-external --allow-unverified
+pip_pkgs:
+    - pycairo
+    - mod_python
+    - django
+    - python-ldap
+    - python-memcached
+    - python-sqlite2
+    - bitmap
+    - bitmap-fonts
+    - carbon
+    - whisper
+    - graphite-web
+
+# APT
+apt_pkgs:
+    - gcc
+    - git-core
+    - g++
+    - libbz2-dev
+    - liblzma-dev
+    - libcrypto++-dev
+    - libpqxx3-dev
+    - scons
+    - libicu-dev
+    - strace
+    - emacs
+    - ccache
+    - gdb
+    - time
+    - automake
+    - libtool
+    - autoconf
+    - bash-completion
+    - google-perftools
+    - libgoogle-perftools-dev
+    - valgrind
+    - libace-dev
+    - gfortran
+    - linux-tools
+    - uuid-dev
+    - liblapack-dev
+    - libblas-dev
+    - libevent-dev
+    - flex
+    - bison
+    - pkg-config
+    - python-dev
+    - python-pip
+    - python-numpy
+    - python-numpy-dev
+    - python-matplotlib
+    - libcppunit-dev
+    - python-setuptools
+    - ant
+    - openjdk-7-jdk
+    - doxygen
+    - libfreetype6-dev
+    - libpng-dev
+    - python-tk
+    - tk-dev
+    - python-virtualenv
+    - sshfs
+    - rake
+    - ipmitool
+    - mm-common
+    - libsigc++-2.0-dev
+    - libcairo2-dev
+    - libcairomm-1.0-dev
+    - protobuf-compiler
+    - redis-server
+

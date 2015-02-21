@@ -1,0 +1,12 @@
+
+- name: prepare RTBKit dependencies
+  command: make dependencies
+  sudo_user: "{{ rtbkit_user }}"
+  args:
+      chdir: "{{ rtbkit_user_home}}"
+
+- name: compile RTBkit
+  shell: make compile
+  sudo_user: "{{ rtbkit_user }}"
+  args:
+    chdir: "{{ rtbkit_user_home }}"

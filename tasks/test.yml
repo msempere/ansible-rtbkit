@@ -1,0 +1,6 @@
+
+- name: test RTBKit stack
+  command: make test
+  sudo_user: "{{ rtbkit_user }}"
+  args:
+      chdir: "{{ rtbkit_user_home }}"

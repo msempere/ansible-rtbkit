@@ -1,0 +1,11 @@
+
+ - name: copy zookeeper configuration for a local standalone server
+   command: cp sample.zookeeper.conf {{ rtbkit_user_home }}/local/bin/zookeeper/conf/zoo.cfg
+   args:
+    chdir: "{{ rtbkit_user_home}}/rtbkit"
+
+ - name: run zookeeper
+   command: zkServer.sh start
+   args:
+    chdir: "{{ rtbkit_user_home }}/local/bin/zookeeper/bin"
+

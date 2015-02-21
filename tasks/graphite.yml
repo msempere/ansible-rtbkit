@@ -1,0 +1,10 @@
+
+ - name: preparing configuration files for carbon
+   command: 'for i in `ls *`; do sudo cp $i `echo $i | sed "s/\.example//g"`; done'
+   args:
+    chdir: /opt/graphite/conf
+
+ - name: start carbon service
+   command: carbon-cache.py start
+   args:
+    chdir: /opt/graphite/bin

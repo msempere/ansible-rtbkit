@@ -1,0 +1,5 @@
+
+ - name: run redis server
+   command: redis-server sample.redis.conf
+   args:
+    chdir: "{{ rtbkit_user_home }}/rtbkit"
