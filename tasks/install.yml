@@ -10,8 +10,11 @@
        state=absent
        purge=yes
 
+ - name: install the newest pip, so that we don't depend on the system version
+   shell: pip install --upgrade pip
+
  - name: install graphite required components
-   shell: pip install --allow-all-external {{ item }} --allow-unverified {{ item }}
+   shell: /usr/local/bin/pip install --allow-all-external {{ item }} --allow-unverified {{ item }}
    with_items: pip_pkgs
 
  - name: install specific version for Twisted module
