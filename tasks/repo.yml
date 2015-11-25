@@ -1,7 +1,7 @@
 
  - name: clone RTBkit repo
    git: >
-    repo=git@github.com:rtbkit/rtbkit.git
+    repo=https://github.com/rtbkit/rtbkit.git
     dest={{ rtbkit_framework }}
     recursive=no
     update=yes
