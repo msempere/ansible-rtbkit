@@ -1,6 +1,72 @@
+---
+- name: download boost 1.57.0
+  get_url: >
+    url=http://downloads.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.bz2
+    dest=/opt/boost_1_57_0.tar.bz2
+    timeout=60
+
+- name: create boost build directory
+  file: >
+    path=/opt/boost_1_57_0
+    state=directory
+
+- name: untar boost
+  unarchive: >
+    src=/opt/boost_1_57_0.tar.bz2
+    dest=/opt
+    copy=no
+    creates=/opt/boost_1_57_0
+  become: yes
+
+- name: configure boost
+  shell: ./bootstrap.sh
+  args:
+    chdir: /opt/boost_1_57_0
+
+- name: compile boost
+  shell: ./b2
+  become: yes
+  args:
+    chdir: /opt/boost_1_57_0
+
+- name: install boost
+  shell: ./b2 install
+  become: yes
+  args:
+    chdir: /opt/boost_1_57_0
+  notify:
+    - update ldconfig
+
+- name: clone cityhash repo
+  git: >
+    repo=https://github.com/google/cityhash
+    dest=/opt/cityhash
+    recursive=no
+    update=yes
+    force=yes
+    accept_hostkey=yes
+
+- name: configure cityhash
+  shell: ./configure
+  args:
+    chdir: /opt/cityhash
+
+- name: compile cityhash
+  shell: make all check CXXFLAGS="-g -O3"
+  become: yes
+  args:
+    chdir: /opt/cityhash
+
+- name: install cityhash
+  shell: make install
+  become: yes
+  args:
+    chdir: /opt/cityhash
+  notify:
+    - update ldconfig
 
 - name: test RTBKit stack
   command: make test
   sudo_user: "{{ rtbkit_user }}"
   args:
-      chdir: "{{ rtbkit_user_home }}"
+    chdir: "{{ rtbkit_framework }}"

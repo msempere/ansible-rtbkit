@@ -1,12 +1,5 @@
-
-- name: prepare RTBKit dependencies
-  command: make dependencies
-  sudo_user: "{{ rtbkit_user }}"
-  args:
-      chdir: "{{ rtbkit_framework }}"
-
 - name: compile RTBkit
-  shell: make compile
+  shell: make compile NODEJS_ENABLED=0
   sudo_user: "{{ rtbkit_user }}"
   args:
     chdir: "{{ rtbkit_framework }}"

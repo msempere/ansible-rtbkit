@@ -3,8 +3,10 @@
    git: >
     repo=https://github.com/rtbkit/rtbkit.git
     dest={{ rtbkit_framework }}
+    version=ubuntu14
     recursive=no
     update=yes
+    force=yes
     accept_hostkey=yes
 
  - name: copy sample.mk as local.mk config file
@@ -16,12 +18,3 @@
    file: >
     path={{ rtbkit_framework }}/rtbkit/build
     state=directory
-
- - name: apply correct permissions to RTBkit directory
-   file: >
-    path={{ rtbkit_framework }}
-    state=directory
-    recurse=yes
-    owner={{ rtbkit_user }}
-    group={{ rtbkit_group }}
-
