@@ -5,11 +5,6 @@
     dest=/opt/boost_1_57_0.tar.bz2
     timeout=60
 
-- name: create boost build directory
-  file: >
-    path=/opt/boost_1_57_0
-    state=directory
-
 - name: untar boost
   unarchive: >
     src=/opt/boost_1_57_0.tar.bz2
@@ -67,6 +62,6 @@
 
 - name: test RTBKit stack
   command: make test
-  sudo_user: "{{ rtbkit_user }}"
+  become: yes
   args:
     chdir: "{{ rtbkit_framework }}"
