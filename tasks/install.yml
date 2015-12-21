@@ -1,23 +1,21 @@
 ---
- - name: install dependencies
-   apt: pkg={{ item }} update_cache=yes state=present
-   with_items: apt_pkgs
+- name: install dependencies
+  apt: pkg={{ item }} update_cache=yes state=present
+  with_items: apt_pkgs
 
- - name: remove system packages that cause problems with platform-deps
-   apt: >
-       pkg=libcurl4-openssl-dev
-       update_cache=yes
-       state=absent
-       purge=yes
+- name: install PIP
+  apt: >
+      pkg=python-pip
+      update_cache=yes
+      state=present
 
- - name: install the newest pip, so that we don't depend on the system version
-   shell: pip install --upgrade pip
+- name: upgrade to the newest pip, so that we don't depend on the system version
+  shell: pip install --upgrade pip
+  register: pip_result
+  changed_when: "'Requirement already up-to-date' not in pip_result.stdout"
 
- - name: install graphite required components
-   shell: /usr/local/bin/pip install --allow-all-external {{ item }} --allow-unverified {{ item }}
-   with_items: pip_pkgs
-
- - name: install specific version for Twisted module
-   pip: name=Twisted
-        version=11.1.0
-
+- name: install graphite required components
+  shell: /usr/local/bin/pip install --allow-all-external {{ item }} --allow-unverified {{ item }}
+  with_items: pip_pkgs
+  register: pip_result
+  changed_when: "'Requirement already satisfied' not in pip_result.stdout"

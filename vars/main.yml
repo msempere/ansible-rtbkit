@@ -1,85 +1,29 @@
-
 # RTBkit
 rtbkit_user:    rtbkit
 rtbkit_group:   rtbkit
 
-rtbkit_user_home:   /home/{{ rtbkit_user }}
-rtbkit_framework:   "{{ rtbkit_user_home }}/test"
+rtbkit_user_home:   '/home/{{ rtbkit_user }}'
+rtbkit_framework:   '{{ rtbkit_user_home }}/rtbkit'
 
 # test stack?
 test: no
 
-# pycairo
-pycairo_download_url: http://cairographics.org/releases
-pycairo_version: 1.10.0
-
-# PIP
 pip_pkgs:
-    - django
-    - python-ldap
-    - python-memcached
-    - bitmap
-    - carbon
-    - whisper
-    - graphite-web
+     - bitmap
+     - django
+     - pylibmc
+     - python-ldap
 
 # APT
 apt_pkgs:
-    - gcc
-    - git-core
-    - g++
-    - libbz2-dev
-    - liblzma-dev
-    - libcrypto++-dev
-    - libpqxx3-dev
-    - scons
-    - libicu-dev
-    - strace
-    - emacs
-    - ccache
-    - gdb
-    - time
-    - automake
-    - libtool
-    - autoconf
-    - bash-completion
-    - google-perftools
-    - libgoogle-perftools-dev
-    - valgrind
-    - libace-dev
-    - gfortran
-    - linux-tools
-    - uuid-dev
-    - liblapack-dev
-    - libblas-dev
-    - libevent-dev
-    - flex
-    - bison
-    - pkg-config
-    - python-dev
-    - python-pip
-    - python-numpy
-    - python-numpy-dev
-    - python-matplotlib
-    - libcppunit-dev
-    - python-setuptools
-    - ant
-    - openjdk-7-jdk
-    - doxygen
-    - libfreetype6-dev
-    - libpng-dev
-    - python-tk
-    - tk-dev
-    - python-virtualenv
-    - sshfs
-    - rake
-    - ipmitool
-    - mm-common
-    - libsigc++-2.0-dev
-    - libcairo2-dev
-    - libcairomm-1.0-dev
-    - protobuf-compiler
-    - libapache2-mod-python
-    - libldap2-dev
-    - libsasl2-dev
-    - python-sqlite
+  - libcurlpp-dev
+  - libhiredis-dev
+  - libicu-dev
+  - libldap2-dev
+  - libmemcached-dev
+  - libsasl2-dev
+  - liburcu-dev
+  - libzmq3-dev
+  - libzookeeper-mt-dev
+  - python-cairo-dev
+  - python-dev

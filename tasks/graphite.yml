@@ -1,11 +1,79 @@
+---
+- name: clone graphite-web repo
+  git: >
+   repo=https://github.com/graphite-project/graphite-web.git
+   dest=/opt/graphite-web
+   recursive=no
+   update=yes
+   force=yes
+   accept_hostkey=yes
 
- - name: preparing configuration files for carbon
-   shell: 'for i in `ls *`; do sudo cp $i `echo $i | sed "s/\.example//g"`; done'
-   sudo_user: "{{ rtbkit_user }}"
-   args:
+- name: install graphite-web in /opt/graphite
+  shell: 'python setup.py install'
+  become: yes
+  args:
+    chdir: /opt/graphite-web
+
+- name: clone carbon repo
+  git: >
+   repo=https://github.com/graphite-project/carbon.git
+   dest=/opt/carbon
+   recursive=no
+   update=yes
+   force=yes
+   accept_hostkey=yes
+
+- name: install carbon in /opt/carbon
+  shell: 'python setup.py install'
+  become: yes
+  args:
+    chdir: /opt/carbon
+
+- name: clone whisper repo
+  git: >
+   repo=https://github.com/graphite-project/whisper.git
+   dest=/opt/whisper
+   recursive=no
+   update=yes
+   force=yes
+   accept_hostkey=yes
+
+- name: install whisper in /opt/whisper
+  shell: 'python setup.py install'
+  become: yes
+  args:
+    chdir: /opt/whisper
+
+- name: clone ceres repo
+  git: >
+   repo=https://github.com/graphite-project/ceres.git
+   dest=/opt/ceres
+   recursive=no
+   update=yes
+   force=yes
+   accept_hostkey=yes
+
+- name: install ceres in /opt/ceres
+  shell: 'python setup.py install'
+  become: yes
+  args:
+    chdir: /opt/ceres
+
+- name: preparing configuration files for carbon
+  shell: 'for i in `ls *`; do sudo cp $i `echo $i | sed "s/\.example//g"`; done'
+  become: yes
+  args:
     chdir: /opt/graphite/conf
 
- - name: start carbon service
-   command: ./carbon-cache.py start
-   args:
+- name: check if carbon service is running
+  command: ./carbon-cache.py status
+  ignore_errors: yes
+  register: carbon_status
+  args:
+    chdir: /opt/graphite/bin
+
+- name: start carbon service
+  command: ./carbon-cache.py start
+  when: carbon_status|failed
+  args:
     chdir: /opt/graphite/bin

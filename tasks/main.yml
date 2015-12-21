@@ -1,9 +1,5 @@
-- include: pycairo.yml
-  tags: install
-
 - include: install.yml
   tags: install
-  when: ansible_distribution in [ 'Debian', 'Ubuntu' ]
 
 - include: repo.yml
   tags: update
@@ -19,4 +15,4 @@
 
 - include: test.yml
   tags: test
-  when: test is defined and test == 'yes'
+  when: test is defined and test
